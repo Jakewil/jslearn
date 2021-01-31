@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聚美优品登录界面</title>
+    <script type="text/javascript">
+            function mySubmit(form) {
+                <!--定义formData对象-->
+                let formData = new FormData(form);
+                <!--利用fromData对象的get方法获取表单数据-->
+                let username = formData.get('username');
+                let password = formData.get('password');
+                <!--进行一些判断或者操作-->
+                if (username == "") {
+                    alert('用户名不得为空');
+                    return false;
+                } else if (password == "") {
+                    alert('密码不得为空');
+                    return false;
+                }
+                if (username != "admin") {
+                    alert('用户名错误');
+                    return false;
+                } else if (password != "123456") {
+                    alert('密码错误');
+                    return false;
+                }else if (username == "admin" && password == "123456") {
+                    alert('成功登录购物车')
+                    return true;
+                }
+            }
+    </script>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+
+    .footer {
+        margin-top: -50px;
+        height: 50px;
+        background-color: #eee;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .wrap {
+        min-height: 100%;
+    }
+
+    .main {
+        padding-bottom: 50px;
+    }
+    section{
+        position: absolute;
+        background-color: pink;
+        height: 5px;
+        width: 100%;
+        padding-bottom: 200px;/*等于footer的高度*/
+    }
+
+    .size{
+        font-size: 70px;
+        width: 25px;
+        height: 20px;
+    }
+    header{
+        margin-left: 550px;
+        margin-right: 750px;
+        position: relative;
+        text-align: center;
+        overflow: hidden;
+    }
+    #container {
+        text-align: center;
+        overflow: hidden;
+    }
+    #photo {
+
+        width: 1000px;
+        animation: switch 3s ease-out infinite;
+    }
+    #photo > img {
+        float: left;
+        width: 200px;
+        height: 100px;
+    }
+    @keyframes switch {
+        0%, 25% {
+            margin-left:30px;
+        }
+        35%, 60% {
+            margin-left: -190px;
+        }
+        70%, 100%
+        {
+            margin-left: -350px;
+        }
+
+    }
+</style>
+</head>
+<body>
+<header style="height: 100px;">
+    <p id="container">
+    <p id="photo">
+        <img src="pic/1.png" />
+        <img src="pic/2.png" />
+        <img src="pic/3.png" />
+    </p>
+    </p>
+</header>
+<section>
+    <div style="left: 580px;position: relative">
+    <img src="image/logo.jpg" alt="logo" width="300px" height="%80" id="head" >
+
+        </div>
+
+    <div style="left: 380px;position: relative;height: 180px">
+        <img src="pic/屏幕截图 2021-01-25 152938.png"  width="50% "id="po1" />
+    </div>
+
+    <div style="left: 200px;position: relative;height: 20px">
+        <img src="pic/屏幕截图 2021-01-25 153041.png" height="350" width="500" id="po2"/>
+    </div>
+
+    <div style="left: 700px;position: relative;height: 200px">
+        <div style="text-align: left ;border:1px solid;box-shadow: darkgrey 10px 10px 10px 5px;width: 450px;height: 300px">
+            <div id="size">
+                <div style="height: 40px"></div>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input name="method" type="radio" value="dynamic" class="size">
+            <label for="size" >手机动态密码登录</label>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input name="method" type="radio"  value="normal" class="size" checked>
+            <label for="size">普通登录</label>
+        </div>
+
+            <div id="login" style="left: 5px;height: 500px; position: relative">
+
+                <form action="https://jakewil.github.io/jslearn/shoppingcart.html" method="get" target="_self" onsubmit="return mySubmit(this)" style="font-size: 20px">
+                    <div style="height: 10px"></div>
+                    <p style="height:50px">
+                        &nbsp&nbsp&nbsp&nbsp用户名:&nbsp<input type="text" name="username" id="uname" style="font-size:20px; line-height:30px;height: 20px;width: 300px">
+                    </p>
+                    <p style="height: 50px">
+                        &nbsp&nbsp&nbsp&nbsp密&nbsp&nbsp码:&nbsp&nbsp<input type="password" name="password" id="pword" style="font-size:20px; line-height:30px;height: 20px;width: 300px">
+                    </p>
+
+                    <p style="height: 50px ;left:30px;position: relative">
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" name="cbs" value="autologin" style="height: 20px;width: 20px;">&nbsp&nbsp自动登录
+                    </p>
+                    <p style="height: 50px">
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="登录" style="height: 30px;width: 100px;font-size: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp <input type="button" value="注册" style="height: 30px;width: 100px;font-size: 15px">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="wrap">
+    <div class="main">
+
+    </div>
+</div>
+<div class="footer"><hr size="2px">
+    <a href="#">北京创锐文化传媒有限公司 Jumei.com 保留一切权利。</a>
+    <a href="#">客服热线：400-123-8888</a>
+    <a href="#">官方博客</a>
+    <a href="#">客户服务</a>
+    <a href="#">隐私政策</a><br>
+    京公网安备 11010102001226 号 | 京ICP证111033号 | 食品流通许可证 SP1101051110165515（1-1） | 营业执照 | 公示制度><br>
+    Copyright © 2010-2015</div>
+
+</body>
+</html>

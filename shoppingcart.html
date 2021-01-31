@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的购物车</title>
+    <style>
+        *{
+            margin-left: 30px;
+            margin-right: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .allchk{
+            width: 20px;
+            height: 20px;
+            position: relative;
+            left: 50px;
+            top:3px;
+
+        }
+        .style2{
+            left:-20px;
+            text-align: center;
+            position: relative;
+            padding-top: 50px;
+            padding-right: 10px;
+        }
+        .style{
+            left:-20px;
+            position: relative;
+            text-align: center;
+        }
+        ul{
+            width: 1300px;
+            height: 200px;
+            list-style-type: none;
+            border:1px solid;
+            box-shadow: darkgrey 10px 10px 10px 5px;
+            margin-right: 30px;
+
+        }
+        li{
+            left: 20px;
+            position: relative;
+            white-space: nowrap;
+            padding-top: 10px;
+            float: left;
+            margin-left: 0;
+        }
+        .border{
+            border: 1px solid;
+            border-width: 0px 1px 0px 0px;
+            height: 190px;
+        }
+        .width1{
+            width: 300px;
+        }
+        .width2{
+            width: 100px;
+        }
+        .width3{
+            width: 200px;
+        }
+    </style>
+    <script>
+            function add(number,single,total)
+            {
+                var num=document.getElementById(number).innerHTML;
+                var price=document.getElementById(single).innerHTML;
+                num=parseFloat(num)+1;
+                var p=num*parseFloat(price);
+                p=p.toFixed(2)
+                document.getElementById(number).innerHTML=num;
+                document.getElementById(total).innerHTML=p;
+                money();
+            }
+
+           function del(number,single,total){
+                var num=document.getElementById(number).innerHTML;
+                var price=document.getElementById(single).innerHTML;
+                if (num==1){
+                    document.getElementById(number).innerHTML=num;
+                    document.getElementById(total).innerHTML=price;
+                }else {
+                    num = parseFloat(num);
+                    var p = (num - 1) * parseFloat(price);
+                    p = p.toFixed(2)
+                    num = num - 1;
+                    document.getElementById(number).innerHTML = num;
+                    document.getElementById(total).innerHTML = p;
+                }
+                    money();
+            }
+            function delall(num){
+                var elem=document.getElementById(num); // 按 id 获取要删除的元素
+                elem.parentNode.removeChild(elem);
+            }
+            function chooseall(){
+                var all=document.getElementById('all');//获取到点击全选的那个复选框的id
+                var one=document.getElementsByName('chk');//获取到复选框的名称
+                if(all.checked==true){//因为获得的是数组，所以要循环 为每一个checked赋值
+                    for(var i=0;i<one.length;i++){
+                        one[i].checked=true;
+                    }
+
+                }else{
+                    for(var j=0;j<one.length;j++){
+                        one[j].checked=false;
+                    }
+                }
+                 
+            }
+            function money(){
+                var one=document.getElementsByName('chk');//获取到复选框的名称
+                var m=document.getElementsByName('allprice');//获取到所有的价格
+                var money=Array();
+                for (var i=0;i<m.length;i++){
+                    money[i]=m[i].innerHTML;
+                }
+                var sum=0.00;
+                for(var i=0;i<one.length;i++){
+                    if (one[i].checked==true){
+                        sum=sum+parseFloat(money[i])
+                    }
+                }
+                document.getElementById("totalmoney").innerHTML=sum;
+
+                var all=document.getElementById('all');//获取到点击全选的那个复选框的id
+                var one=document.getElementsByName('chk');//获取到复选框的名称
+                var justice=0;
+                    for(var j=0;j<one.length;j++){
+                        if(one[j].checked==false){
+                            all.checked=false;
+                            justice=1;
+                        break;
+                    }
+                }
+                    if (justice==0){
+                        all.checked=true;
+                    }
+            }
+    </script>
+</head>
+<body>
+<div>
+    <img src="gouwu/1.png" width="1200" style="left: 30px;position: relative" >
+    <hr size="2px">
+    <span ><input type="checkbox" class="allchk"  id="all" onclick="chooseall(),money()">
+        <span style="font-size: 20px;color: red;text-shadow: 0px 1px 2px red;">全选</span>
+    </span> <span style="position: relative;left: 600px">已选商品价格:<span id="totalmoney">0.00</span></span>
+    <hr size="2px"><br>
+</div>
+
+<ul id="first">
+    <li class="border"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input  type="checkbox" name="chk" onclick="money()">选择
+        <hr size="2px">
+            <a href="//item.taobao.com/item.htm?id=626603488602" target="_self" >
+                <div style="padding-bottom: 10px;padding-top: -20px">
+                    <img src="https://img.alicdn.com/bao/uploaded/i4/381310607/O1CN01hfjJM81GM321VK6aY_!!381310607.jpg_80x80.jpg">
+                </div>
+               <div>鼠标吸汗防滑防汗贴</div>
+            </a>
+
+        </li>
+        <li class="border width1">
+            <div class="style">款式</div>
+            <div class="style2">颜色分类：深卡其布色[小猫咪]</div>
+        </li>
+        <li class="border width2">
+            <div class="style">单价</div>
+            <div class="style2" id="single">20.60</div>
+        </li>
+        <li class="border width3">
+            <div class="style">数量</div>
+            <div class="style2">
+                <span style="left: -60px;position: relative">
+                    <button onclick='del("number","single","price")'>-</button>
+                </span>
+                <span style="left: -150px;position: relative" id="number">1</span>
+                <span style="left: -230px;position: relative">
+                    <button onclick='add("number","single","price")'>+</button>
+                </span>
+            </div>
+
+        </li>
+        <li>
+            <div class="style">金额</div>
+            <div class="style2" id="price" name="allprice">20.60</div>
+            <div style="position: relative;top:20px;left: -20px">
+                <button onclick='delall("first")' style="height: 30px;width: 60px;">删除</button>
+            </div>
+
+    </li>
+</ul>
+<ul id="second">
+    <li class="border"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <input  type="checkbox" name="chk" onclick="money()">选择
+
+        <hr size="2px">
+        <a href="//item.taobao.com/item.htm?id=610400265392" target="_self">
+            <div style="padding-bottom: 10px;padding-top: -20px">
+                <img src="https://img.alicdn.com/bao/uploaded/i1/2624580967/O1CN01gorQfl1J0vaDWa6dM_!!0-item_pic.jpg_80x80.jpg" >
+                <div>潮牌手机壳</div>
+            </div>
+        </a>
+
+    </li>
+    <li class="border width1">
+        <div class="style" >款式</div>
+        <div class="style2">颜色分类：潮牌logo 抗震壳</div>
+    </li>
+    <li class="border width2">
+        <div class="style">单价</div>
+        <div class="style2" id="single2">18.00</div>
+    </li>
+    <li class="border width3">
+        <div class="style">数量</div>
+        <div class="style2">
+                <span style="left: -60px;position: relative">
+                    <button onclick='del("number2","single2","price2")'>-</button>
+                </span>
+            <span style="left: -150px;position: relative" id="number2">1</span>
+            <span style="left: -230px;position: relative">
+                    <button onclick='add("number2","single2","price2")'>+</button>
+                </span>
+        </div>
+
+    </li>
+    <li>
+        <div class="style">金额</div>
+        <div class="style2" id="price2" name="allprice">18.00</div>
+        <div style="position: relative;top:20px;left: -20px">
+            <button onclick='delall("second")' style="height: 30px;width: 60px;">删除</button>
+        </div>
+    </li>
+</ul>
+
+</body>
+</html>
